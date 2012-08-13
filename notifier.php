@@ -2,11 +2,7 @@
 require_once 'simple_html_dom.php';
 require_once 'sqlite.class.php';
 require_once 'sqlite.setup.php';
-
-/* Your settings */
-$developer_name = 'your-name';
-$fromEmail = 'your@from.email.com';
-$toEmail = 'your@to.email.com';
+require_once 'config.php';
 
 /* This URL might change so we put it in an easy to access var */
 $developer_url = 'http://www.magentocommerce.com/magento-connect/developer/DEVELOPER_NAME';
