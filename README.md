@@ -2,7 +2,7 @@ Magento Connect Review Notifier
 =================
 
 ## Introduction ##
-This script was made to notify me of any new reviews of my extensions in Magento Connect. Magento doesn't send a notification if a review is added and to be sure we offer the best support we can give, we want to be notified of new reviews as soon as possible.
+This script was made to notify me of any new reviews of my extensions in Magento Connect. Magento doesn't send a notification when a review is added and to be sure we offer the best support we can give, we want to be notified of new reviews as soon as possible.
 
 ## Requirements ##
 * PHP 5.0 or higher
