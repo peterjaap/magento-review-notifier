@@ -13,6 +13,7 @@ This script was made to notify me of any new reviews of my extensions in Magento
 * Place the script somewhere convenient
 * Edit config.php to put in your own developer name & email addresses
 * Add an entry in your crontab to set up a cron that runs, for example, every morning at 8 AM
+* Make sure the directory your scripts is placed in is writable by the web user, for creation of the SQLite database
 * Go go go!
 
 ## Changelog ##
