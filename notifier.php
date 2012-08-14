@@ -42,15 +42,31 @@ foreach($extension_urls as $extension_url) {
     foreach($dom->find('h1[itemprop=name]') as $name) {
         $name = $name->innertext;
     }
-    $results = $db->query("SELECT * FROM entries WHERE `extension_url` = '".$extension_url."'")->fetchArray(SQLITE3_ASSOC);
+    try {
+        $results = $db->query("SELECT * FROM entries WHERE `extension_url` = '".$extension_url."'")->fetchArray(SQLITE3_ASSOC);
+    } catch(Exception $e) {
+        $mailLines[] = "SQL Error: ".$e->getMessage();
+        $mail = true;
+    }
+
     /* If no result is found in the database, enter the value */
-    if($results===null) {
-        $db->exec("INSERT INTO entries VALUES (null,'".$extension_url."', '".$result."')");
+    if(!$results) {
+        try {
+            $db->exec("INSERT INTO entries VALUES (null,'".$extension_url."', '".$result."')");
+        } catch(Exception $e) {
+            $mailLines[] = "SQL Error: ".$e->getMessage();
+            $mail = true;
+        }
         $mail = true;
     } else {
         /* If a result is found, check if the result differs from the previous run. If so; add it to the email lines array */
         if($results['reviews']!=$result) {
-            $db->exec("UPDATE entries SET reviews = '".$result."' WHERE extension_url = '".$extension_url."'");
+            try {
+                $db->exec("UPDATE entries SET reviews = '".$result."' WHERE extension_url = '".$extension_url."'");
+            } catch(Exception $e) {
+                $mailLines[] = "SQL Error: ".$e->getMessage();
+                $mail = true;
+            }
             $mail = true;
         } else {
             $mail = false;
